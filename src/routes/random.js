@@ -31,12 +31,25 @@ export async function handleRandom(request, env) {
 	const data = await response.json();
 
 	if (data.error) {
+		let status = 502;
+		let error = 'Random number service is temporarily unavailable.';
+
+		switch (data.error.code) {
+			case 401:
+				status = 500;
+				error = 'Random number service is not configured correctly.';
+				break;
+		}
+
+		// 记录详细错误到 Cloudflare 日志
+		console.error('RANDOM.ORG Error:', data.error);
+
 		return Response.json(
 			{
 				ok: false,
-				randomOrgError: data.error,
+				error,
 			},
-			{ status: 502 },
+			{ status },
 		);
 	}
 
