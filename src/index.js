@@ -1,5 +1,6 @@
 import { handleTime } from './routes/time';
 import { handleRandom } from './routes/random';
+import { handleUUID } from './routes/uuid.js';
 
 export default {
 	async fetch(request, env) {
@@ -11,6 +12,9 @@ export default {
 
 			case '/random':
 				return handleRandom(request, env);
+
+			case '/uuid':
+				return handleUUID(request, env);
 
 			default:
 				return Response.json(
