@@ -166,5 +166,6 @@ dist
 !.env.example
 .wrangler/
 
-.dev.vars
-*.dev.vars
+# IDE
+.vscode
+.idea
