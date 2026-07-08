@@ -5,12 +5,14 @@ export async function handleBingWallpaperInfo(request, env) {
 
 	const image = data.images[0];
 
+	const baseUrl = 'https://www.bing.com';
+
 	return Response.json({
 		ok: true,
 		title: image.title,
 		copyright: image.copyright,
 		date: image.startdate,
-		url: `https://www.bing.com${image.url}`,
-		hdurl: `https://www.bing.com${image.hdurl}`,
+		url: `${baseUrl}${image.url}`,
+		hdurl: image.hdurl ? `${baseUrl}${image.hdurl}` : `${baseUrl}${image.url}`,
 	});
 }
