@@ -1,6 +1,8 @@
 import { handleTime } from './routes/time';
 import { handleRandom } from './routes/random';
 import { handleUUID } from './routes/uuid.js';
+import { handleBingWallpaper } from './routes/bing-wallpaper.js';
+import { handleBingWallpaperInfo } from './routes/bing-wallpaper-info.js';
 
 export default {
 	async fetch(request, env) {
@@ -15,6 +17,12 @@ export default {
 
 			case '/uuid':
 				return handleUUID(request, env);
+
+			case '/bing-wallpaper':
+				return handleBingWallpaper(request, env);
+
+			case '/bing-wallpaper-info':
+				return handleBingWallpaperInfo(request, env);
 
 			default:
 				return Response.json(
